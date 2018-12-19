@@ -107,28 +107,48 @@ function sendUniFi($macAddress, $arraySettings, $operation) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    //Get the current Wifi password from OpenHAB
-    $wifiPasswordURL = $arraySettings->{'wifiPasswordURL'};
-    $wifiPassword = file_get_contents($wifiPasswordURL);
+  //See if the kill switch has been activated
+  $killSwitchURL = $arraySettings->{'killSwitchURL'};
+  $killSwitchStatus = file_get_contents($killSwitchURL);
 
-    if(trim($_POST['txtPassword']) != $wifiPassword){
-        header('Location: ./index.php');
-        $_SESSION['incorrectCount'] = $_SESSION['incorrectCount'] + 1;
+  if($killSwitchStatus != "ON" || $killSwitchStatus == FALSE){
 
-        //See if we have exceeded 5 attempts.  If so, block the MAC
-        if($_SESSION['incorrectCount'] > 5){
-          sendUniFi($_SESSION['macAddress'], $arraySettings, "block");
-        }
+    //Make the service unavailable
+    header('Location: ./unavailable.php');
 
-        exit();
-    }
+    exit();
+  }
+
+  //Get the current Wifi password from OpenHAB
+  $wifiPasswordURL = $arraySettings->{'wifiPasswordURL'};
+  $wifiPassword = file_get_contents($wifiPasswordURL);
+
+  //Make sure the response was positive and not some server error
+  if($wifiPassword == FALSE){
+
+    //Make the service unavailable
+    header('Location: ./unavailable.php');
+
+    exit();
+  }
+
+  if(trim($_POST['txtPassword']) != $wifiPassword){
+      header('Location: ./index.php');
+      $_SESSION['incorrectCount'] = $_SESSION['incorrectCount'] + 1;
+
+      //See if we have exceeded 5 attempts.  If so, block the MAC
+      if($_SESSION['incorrectCount'] > 5){
+        sendUniFi($_SESSION['macAddress'], $arraySettings, "block");
+      }
+
+      exit();
+  }
 
   // Authorize the guest
   sendUniFi($_SESSION['macAddress'], $arraySettings, "authorize");
 
-  //Return a success message and send 200
-  echo "<HTML><HEAD><TITLE>Success</TITLE></HEAD><BODY>Success</BODY></HTML>";
-  header('Content-type:text/html', true, 200);
+  //Redirect success and send HTTP 200/OK
+  header('Location: ./success.php', true, 200);
 
   exit();
 }

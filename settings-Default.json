@@ -3,5 +3,6 @@
     "username": "api",
     "password": "password",
     "authorizedMinutes": 10080,
-    "wifiPasswordURL" : "http://OpenHABServer:8080/rest/items/WiFiGuestPassword/state"
+    "wifiPasswordURL" : "http://OpenHABServer:8080/rest/items/WiFiGuestPassword/state",
+    "killSwitchURL" : "http://OpenHABServer:8080/rest/items/WiFiGuestPasswordKill/state"
 }
