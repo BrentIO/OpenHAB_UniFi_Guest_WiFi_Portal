@@ -91,6 +91,6 @@ else {
             <input name="cmdConnect" value="Connect" type="submit">
             </form>
             </div>
-        <div>
+        </div>
   </body>
 </html>
