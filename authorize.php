@@ -147,8 +147,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   // Authorize the guest
   sendUniFi($_SESSION['macAddress'], $arraySettings, "authorize");
 
-  //Redirect success and send HTTP 200/OK
-  header('Location: ./success.php', true, 200);
+  //Redirect success page
+  header('Location: ./success.php');
 
   exit();
 }
