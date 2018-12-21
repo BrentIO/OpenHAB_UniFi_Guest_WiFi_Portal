@@ -127,5 +127,5 @@ UniFi Settings -> Guest Control:
 
 UniFi Settings -> Admins:
  - Add New Admin, Manually set and share the password.  Enter "api" for the name and "password" for the password.  These will match the settings in /etc/P5Software/guestWiFi/settings.json.
- - Uncheck "Require the user to chnage their password".
+ - Uncheck "Require the user to change their password".
  - Role Administrator, accept all other defaults
