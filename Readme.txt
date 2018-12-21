@@ -13,6 +13,8 @@ With this topology, you can have the guest WiFi open to the world, yet still be 
 
 License
 ---------
+This software is licensed as directed below except where otherwise defined.
+
 Licensed under the Open Software License version 3.0
 
 1) Grant of Copyright License. Licensor grants You a worldwide, royalty-free, non-exclusive, sublicensable license, for the duration of the copyright, to do the following:
