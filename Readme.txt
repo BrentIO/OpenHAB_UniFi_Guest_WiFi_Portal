@@ -74,6 +74,7 @@ Group gWiFi "WiFi"
 
 String WiFiGuestPassword "Guest Password [%s]" (gWifi)
 Switch WiFiGenerateGuestPassword "Generate New Guest Password" (gWiFi)
+Switch WiFiGuestNetworkKill "Guest Network Kill" (gWiFi)
 
 
 Example OpenHAB Rule (wifiGuestPassword.rules)
